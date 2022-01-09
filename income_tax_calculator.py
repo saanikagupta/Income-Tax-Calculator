@@ -99,17 +99,21 @@ def newTaxRegimeCalculator(gross_income):
 # Finds the preferred Tax Regime for you
 def findBetterTaxRegime(income_tax_old, income_tax_new):
 
-	preferred_income_tax = min(income_tax_new, income_tax_old)
-
 	print("===============================================================================")
 
-	if(preferred_income_tax == income_tax_new):
-		difference = income_tax_old - income_tax_new
-		print("Please opt for New Tax Regime as you will have to pay Rs. {} lesser".format(difference))
+	if(income_tax_new == income_tax_old):
+		print("The income tax difference between Old and New Tax Regime is 0 in this case. You can opt either based on your preference.")
 
 	else:
-		difference = income_tax_new - income_tax_old
-		print("Please opt for Old Tax Regime as you will have to pay Rs. {} lesser".format(difference))
+		preferred_income_tax = min(income_tax_new, income_tax_old)
+
+		if(preferred_income_tax == income_tax_new):
+			difference = income_tax_old - income_tax_new
+			print("Please opt for New Tax Regime as you will have to pay Rs. {} lesser".format(difference))
+
+		else:
+			difference = income_tax_new - income_tax_old
+			print("Please opt for Old Tax Regime as you will have to pay Rs. {} lesser".format(difference))
 
 	print("===============================================================================")
 

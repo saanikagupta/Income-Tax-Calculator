@@ -53,9 +53,10 @@ def oldTaxRegimeCalculator(gross_income, tax_exemption):
 	return income_tax_old
 
 # New tax regime calculation
-def newTaxRegimeCalculator(gross_income):
+def newTaxRegimeCalculator(gross_income, tax_exemption):
 	
 	income_tax_new = 0
+	gross_income -= tax_exemption
 
 	if(gross_income > FIFTEEN_LAKH):
 		remaining = gross_income - FIFTEEN_LAKH
@@ -118,10 +119,11 @@ def findBetterTaxRegime(income_tax_old, income_tax_new):
 	print("===============================================================================")
 
 gross_income = int(input("Enter Gross income: "))
-tax_exemption = int(input("Enter exemption for old tax regime: "))
+tax_exemption_old = int(input("Enter exemptions for old tax regime excluding 50k of standard deduction: "))
+tax_exemption_new = int(input("Enter exemption for new tax regime (Employer PF amount): "))
 
-income_tax_old = oldTaxRegimeCalculator(gross_income, tax_exemption)
-income_tax_new = newTaxRegimeCalculator(gross_income)
+income_tax_old = oldTaxRegimeCalculator(gross_income, tax_exemption_old)
+income_tax_new = newTaxRegimeCalculator(gross_income, tax_exemption_new)
 
 print("Income Tax for Old tax regime = " + str(income_tax_old))
 print("Income Tax for New tax regime = " + str(income_tax_new))
